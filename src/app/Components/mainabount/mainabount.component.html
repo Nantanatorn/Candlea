@@ -1,0 +1,20 @@
+<section class="bg-white py-16">
+  <div class="mx-auto max-w-6xl px-4 text-center">
+    <!-- หัวข้อ -->
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">About Us</h2>
+    <p class="mt-2 text-gray-500">Candle (Made in Thailand)</p>
+
+    <!-- กล่อง features -->
+    <div class="mt-12 grid gap-8 md:grid-cols-3">
+      <div *ngFor="let f of features"
+           class="rounded-xl border border-gray-200 p-6 hover:shadow-lg transition">
+        <div class="mb-4 flex justify-center text-gray-700"
+             [innerHTML]="f.icon"></div>
+        <h3 class="font-semibold text-lg text-gray-900">{{ f.title }}</h3>
+        <p class="mt-2 text-sm text-gray-600 leading-6">
+          {{ f.desc }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
