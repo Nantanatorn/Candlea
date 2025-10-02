@@ -1,1 +1,85 @@
-<p>shop works!</p>
+<div class="bg-[#f5e9e4] py-28">
+  <div class="text-center">
+    <p class="text-sm text-gray-600">Unique & Premium <span class="font-semibold">Candle</span></p>
+    <h2 class="text-3xl md:text-4xl font-bold">Discover Our Products</h2>
+  </div>
+</div>
+
+<!-- Filter bar -->
+<div class="max-w-6xl mx-auto px-6 py-6">
+  <div class="flex flex-wrap gap-3 border p-4 rounded-md bg-white shadow-sm">
+    <select class="border px-3 py-2 rounded bg-black text-white">
+      <option>Sort By</option>
+    </select>
+    <select class="border px-3 py-2 rounded">
+      <option>Popularity</option>
+    </select>
+    <select class="border px-3 py-2 rounded">
+      <option>Newest</option>
+    </select>
+    <select class="border px-3 py-2 rounded">
+      <option>Size</option>
+    </select>
+    <select class="border px-3 py-2 rounded">
+      <option>Quantity</option>
+    </select>
+  </div>
+</div>
+
+<!-- Products Grid -->
+<div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pb-12">
+  <div *ngFor="let product of products" class="bg-white shadow hover:shadow-md rounded-lg overflow-hidden p-4 transition">
+    <!-- รูปสินค้า (placeholder) -->
+    <div class="bg-gray-100 h-64 flex items-center justify-center rounded mb-4">
+      <span class="text-gray-400 text-sm">Image</span>
+    </div>
+
+    <!-- Rating -->
+    <div class="flex items-center mb-2">
+      <ng-container *ngFor="let star of [1,2,3,4,5]">
+        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 
+          3.974a1 1 0 00.95.69h4.178c.969 0 
+          1.371 1.24.588 1.81l-3.38 2.455a1 1 0 
+          00-.364 1.118l1.287 3.974c.3.922-.755 
+          1.688-1.54 1.118l-3.38-2.454a1 1 0 
+          00-1.175 0l-3.38 2.454c-.785.57-1.84-.196-1.54-1.118l1.287-3.974a1 
+          1 0 00-.364-1.118L2.045 9.401c-.783-.57-.38-1.81.588-1.81h4.178a1 
+          1 0 00.95-.69l1.286-3.974z"/>
+        </svg>
+      </ng-container>
+    </div>
+
+    <!-- Product Name -->
+    <h3 class="font-semibold">{{ product.name }}</h3>
+    <!-- Price -->
+    <p class="text-gray-700">฿ {{ product.price }}</p>
+  </div>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center items-center space-x-2 my-6">
+  <button class="px-3 py-1 border bg-black text-white rounded">1</button>
+  <button class="px-3 py-1 border rounded">2</button>
+  <button class="px-3 py-1 border rounded">3</button>
+  <span>...</span>
+  <button class="px-3 py-1 border rounded">8</button>
+  <button class="px-3 py-1 border rounded">9</button>
+  <button class="ml-4 px-4 py-1 border bg-black text-white rounded">Next</button>
+</div>|
+<div class="relative bg-gray-700 text-center py-16 px-4">
+  <!-- พื้นหลัง Image -->
+  <div class="absolute inset-0 bg-[#3C4245] opacity-60"></div>
+  
+  <!-- Content -->
+  <div class="relative max-w-3xl mx-auto bg-white text-gray-800 p-10 rounded shadow-lg">
+    <h2 class="text-lg font-bold tracking-widest mb-4">FLASH SALE</h2>
+    <p class="text-sm md:text-base text-gray-600 leading-relaxed mb-6">
+      ดื่มด่ำไปกับเสน่ห์ของ เทียนหอมทำมือสุดประณีต ที่รังสรรค์จากฝีมือช่างผู้เชี่ยวชาญ แต่ละชิ้นเปรียบเสมือนงานศิลปะที่ไม่เพียงมอบกลิ่นหอมอันเป็นเอกลักษณ์ หากยังเติมเต็มบรรยากาศให้ทุกมุมบ้านอบอวลไปด้วยความอบอุ่น ความโรแมนติก และความหรูหราเหนือระดับ
+ทุกเปลวไฟที่ส่องสว่างคือการบอกเล่าเรื่องราวแห่งความพิถีพิถัน ทั้งในด้านดีไซน์ กลิ่น และคุณภาพ เพื่อให้คุณได้สัมผัสถึงความพิเศษในทุกช่วงเวลา
+แต่เทียนหอมสุดพิเศษเหล่านี้มีจำนวนจำกัด — รีบจับจองความหรูหราที่จะอยู่กับคุณไปอีกนาน ก่อนที่โอกาสจะเลือนหายไป
+    </p>
+    <button class="bg-black text-white px-6 py-2 rounded hover:bg-gray-900 transition">
+      Shop Now
+    </button>
+  </div>
+</div>

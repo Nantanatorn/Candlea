@@ -1,1 +1,33 @@
-<p>service works!</p>
+<!-- Section Header -->
+<div class="bg-[#f5e9e4] py-28 text-center">
+  <p class="text-gray-600 text-sm">What We <span class="font-semibold bg-black text-white px-1">Offer</span></p>
+  <h2 class="font-eng text-3xl md:text-4xl font-bold mt-2">Our Services</h2>
+</div>
+
+<!-- Sub Title -->
+<div class="text-center py-12 px-6">
+  <p class="font-eng text-sm text-gray-600 mb-2">Our <span class="font-semibold bg-black text-white px-1">Service</span></p>
+  <h2 class="font-eng text-2xl md:text-3xl font-bold mb-4">
+    Experience the Magic of Our <br/> Scented Candles
+  </h2>
+  <p class="font-thai text-gray-500 max-w-2xl mx-auto">
+    สัมผัสเสน่ห์ของเทียนหอมที่ออกแบบมาเพื่อเติมเต็มความอบอุ่น ความสงบ และความสุขให้กับบ้านของคุณ
+  </p>
+</div>
+
+<!-- Service Cards -->
+<div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 pb-16">
+  <div *ngFor="let service of services" 
+       class="bg-white rounded-lg overflow-hidden shadow hover:shadow-md transition flex flex-col">
+    <!-- รูป Placeholder -->
+    <div class="bg-gray-100 h-64 flex items-center justify-center">
+      <span class="text-gray-400 text-sm">Image</span>
+    </div>
+    <!-- เนื้อหา -->
+    <div class="p-4 flex flex-col flex-1">
+      <h3 class="font-eng font-semibold text-lg mb-2">{{ service.title }}</h3>
+      <p class="font-thai text-sm text-gray-500 mb-4 flex-1">{{ service.description }}</p>
+      <a href="#" class="text-sm font-semibold text-black hover:underline">Read more</a>
+    </div>
+  </div>
+</div>
