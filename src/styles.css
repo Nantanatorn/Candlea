@@ -1,2 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+
+body {
+  font-family: "Noto Sans Thai", "Urbanist", sans-serif;
+
+}
+.font-thai {
+  font-family: "Noto Sans Thai", sans-serif;
+}
+
+.font-eng {
+  font-family: "Urbanist", sans-serif;
+}
