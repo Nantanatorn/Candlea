@@ -3,17 +3,17 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './Components/navbar/navbar.component';
-import { FooterComponent } from './Components/footer/footer.component';
+import { NavbarComponent } from './Components/Shared/navbar/navbar.component';
+import { FooterComponent } from './Components/Shared/footer/footer.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { AboutusComponent } from './Pages/aboutus/aboutus.component';
 import { ShopComponent } from './Pages/shop/shop.component';
 import { ServiceComponent } from './Pages/service/service.component';
 import { ProductDetailsComponent } from './Pages/product-details/product-details.component';
-import { BgComponent } from './Components/bg/bg.component';
-import { MaincatComponent } from './Components/maincat/maincat.component';
-import { MainabountComponent } from './Components/mainabount/mainabount.component';
-import { MainproductComponent } from './Components/mainproduct/mainproduct.component';
+import { BgComponent } from './Components/home/bg/bg.component';
+import { MaincatComponent } from './Components/home/maincat/maincat.component';
+import { MainabountComponent } from './Components/home/mainabount/mainabount.component';
+import { MainproductComponent } from './Components/home/mainproduct/mainproduct.component';
 
 @NgModule({
   declarations: [
