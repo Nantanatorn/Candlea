@@ -14,6 +14,7 @@ import { BgComponent } from './Components/home/bg/bg.component';
 import { MaincatComponent } from './Components/home/maincat/maincat.component';
 import { MainabountComponent } from './Components/home/mainabount/mainabount.component';
 import { MainproductComponent } from './Components/home/mainproduct/mainproduct.component';
+import { CartComponent } from './Pages/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MainproductComponent } from './Components/home/mainproduct/mainproduct.
     BgComponent,
     MaincatComponent,
     MainabountComponent,
-    MainproductComponent
+    MainproductComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

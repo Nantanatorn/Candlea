@@ -1,0 +1,132 @@
+<section class="bg-white py-12">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold mb-10">Checkout</h1>
+
+    <div class="grid lg:grid-cols-2 gap-12">
+      <!-- LEFT: Shipping Address -->
+      <form class="space-y-6">
+        <h2 class="text-xl font-semibold mb-4">Shipping Address</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium mb-1">First name</label>
+            <input type="text" class="w-full rounded border-gray-300" placeholder="Enter your first name">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Last name</label>
+            <input type="text" class="w-full rounded border-gray-" placeholder="Enter your last name">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium mb-1">Email address</label>
+            <input type="email" class="w-full rounded border-gray-300" placeholder="Enter your email address">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Phone number</label>
+            <input type="tel" class="w-full rounded border-gray-300" placeholder="Enter phone number">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-1">Country</label>
+          <select class="w-full rounded border-gray-300">
+            <option>Choose your city</option>
+            <option>Thailand</option>
+            <option>Singapore</option>
+            <option>Japan</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-1">Address</label>
+          <input type="text" class="w-full rounded border-gray-300" placeholder="Enter your address">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium mb-1">Town/City</label>
+            <input type="text" class="w-full rounded border-gray-300" placeholder="Enter town/city">
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Zip/Postcode</label>
+            <input type="text" class="w-full rounded border-gray-300" placeholder="Enter zip/postcode">
+          </div>
+        </div>
+      </form>
+
+      <!-- RIGHT: Order Summary -->
+      <div>
+        <h2 class="text-xl font-semibold mb-6">Order Summary</h2>
+        <div class="mt-6 space-y-2 text-sm text-gray-600">
+          <div class="flex justify-between">
+            <span>Product</span>
+            <span>Total</span>
+          </div>
+        </div>
+
+        <div class="">
+          <div *ngFor="let item of cart" class="flex items-center justify-between p-4">
+            <div class="flex items-center gap-4">
+              <div class="h-12 w-12 rounded bg-gray-100 overflow-hidden">
+                <img [src]="item.image" alt="{{item.name}}" class="h-full w-full object-cover"
+                     >
+              </div>
+              <div>
+                <p class="font-medium text-gray-900">{{ item.name }}</p>
+                <p class="text-sm text-gray-500">x{{ item.qty }}</p>
+              </div>
+            </div>
+            <div class="font-semibold">฿ {{ item.price }}</div>
+          </div>
+        </div>
+
+        <!-- Subtotal & Shipping -->
+        <div class="mt-6 space-y-2 text-sm text-gray-600">
+          <div class="flex justify-between">
+            <span>SUBTOTAL</span>
+            <span>฿ {{ subtotal }}</span>
+          </div>
+          <div class="flex justify-between">
+            <span>SHIPPING</span>
+            <span>Free shipping 0.00</span>
+          </div>
+        </div>
+
+        <!-- Total -->
+        <div class="mt-4 flex justify-between font-bold text-lg">
+          <span>Total</span>
+          <span>฿ {{ subtotal }}</span>
+        </div>
+
+        <!-- Payment methods -->
+        <div class="mt-6 space-y-4">
+          <label class="flex items-start gap-3">
+            <input type="radio" name="payment" checked class="mt-1">
+            <div>
+              <span class="font-medium">Direct Bank Transfer</span>
+              <p class="text-sm text-gray-500">Make your payment directly into our bank account. Use Order ID as reference.</p>
+            </div>
+          </label>
+
+          <label class="flex items-center gap-3">
+            <input type="radio" name="payment" class="mt-1">
+            <span class="font-medium">Cash on Delivery</span>
+          </label>
+
+          <label class="flex items-center gap-3">
+            <input type="radio" name="payment" class="mt-1">
+            <span class="font-medium">Paypal</span>
+          </label>
+        </div>
+
+        <!-- Place order button -->
+        <button
+          class="mt-8 w-full bg-black text-white py-3 rounded font-medium hover:opacity-90 transition">
+          Place Order →
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
