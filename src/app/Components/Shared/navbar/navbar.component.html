@@ -1,4 +1,4 @@
-<nav class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur border-b">
+<nav class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur border-b border-b-gray-300">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
       <!-- Left: Logo -->
@@ -22,7 +22,7 @@
 
       <!-- Right actions (desktop) -->
       <div class="hidden md:flex items-center gap-6">
-        <a routerLink="/cart" class="flex items-center gap-2 text-gray-700 hover:text-gray-900">
+        <a (click)="cart.open()" class="flex items-center gap-2 text-gray-700 hover:text-gray-900 cursor-pointer">
           <!-- Cart icon (inline SVG) -->
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M6 6h15l-1.5 9h-12z" />

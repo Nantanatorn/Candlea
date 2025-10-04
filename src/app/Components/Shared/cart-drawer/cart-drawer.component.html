@@ -1,0 +1,63 @@
+<!-- Overlay -->
+<ng-container *ngIf="open$ | async">
+  <div class="fixed inset-0 z-[60] bg-black/40" (click)="cart.close()"></div>
+</ng-container>
+
+<!-- Drawer -->
+<div class="fixed inset-y-0 right-0 z-[61] w-full max-w-sm bg-white shadow-2xl
+            transition-transform duration-300"
+     [class.translate-x-full]="!(open$ | async)">
+  <!-- Header -->
+  <div class="flex items-center justify-between border-b px-5 py-4">
+    <h3 class="text-lg font-semibold">Your Cart</h3>
+    <button (click)="cart.close()" aria-label="Close"
+            class="rounded p-2 hover:bg-gray-100">✕</button>
+  </div>
+
+  <!-- Items -->
+  <div class="h-[calc(100vh-220px)] overflow-y-auto">
+    <div *ngFor="let item of (items$ | async)" class="border-b px-5 py-4">
+      <div class="flex gap-4">
+        <div class="h-16 w-16 rounded bg-gray-100 overflow-hidden">
+          <img [src]="item.image || ''" alt="" class="h-full w-full object-cover"
+               >
+        </div>
+
+        <div class="flex-1">
+          <div class="font-medium text-gray-900">{{ item.name }}</div>
+          <div class="text-gray-600">฿ {{ item.price }}</div>
+
+          <!-- Qty controls -->
+          <div class="mt-2 flex items-center gap-2">
+            <button class="rounded border px-2 py-1 hover:bg-gray-50"
+                    (click)="cart.inc(item.id)">+</button>
+            <span class="rounded border px-3 py-1 text-gray-700 select-none">{{ item.qty }}</span>
+            <button class="rounded border px-2 py-1 hover:bg-gray-50"
+                    (click)="cart.dec(item.id)">−</button>
+          </div>
+
+          <button class="mt-2 text-sm text-red-600 hover:underline"
+                  (click)="cart.remove(item.id)">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ว่างเปล่า -->
+    <div *ngIf="(items$ | async)?.length === 0" class="px-5 py-10 text-center text-gray-500">
+      Your cart is empty.
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="border-t px-5 py-4">
+    <div class="mb-4 flex items-center justify-between">
+      <span class="text-gray-700">Subtotal</span>
+      <span class="font-semibold">฿ {{ cart.subtotal }}</span>
+    </div>
+
+    <a routerLink="/checkout"
+       class="block w-full rounded bg-black py-3 text-center font-medium text-white hover:opacity-90">
+      Continue to Checkout
+    </a>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartService } from '../../../Service/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,4 +10,6 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
     mobileOpen = false;
     closeMobile() { this.mobileOpen = false; }
+    constructor(public cart: CartService) {}
+
 }

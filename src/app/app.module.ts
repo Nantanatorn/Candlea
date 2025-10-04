@@ -15,6 +15,7 @@ import { MaincatComponent } from './Components/home/maincat/maincat.component';
 import { MainabountComponent } from './Components/home/mainabount/mainabount.component';
 import { MainproductComponent } from './Components/home/mainproduct/mainproduct.component';
 import { CartComponent } from './Pages/cart/cart.component';
+import { CartDrawerComponent } from './Components/Shared/cart-drawer/cart-drawer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CartComponent } from './Pages/cart/cart.component';
     MaincatComponent,
     MainabountComponent,
     MainproductComponent,
-    CartComponent
+    CartComponent,
+    CartDrawerComponent
   ],
   imports: [
     BrowserModule,
