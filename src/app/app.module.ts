@@ -16,6 +16,8 @@ import { MainabountComponent } from './Components/home/mainabount/mainabount.com
 import { MainproductComponent } from './Components/home/mainproduct/mainproduct.component';
 import { CartComponent } from './Pages/cart/cart.component';
 import { CartDrawerComponent } from './Components/Shared/cart-drawer/cart-drawer.component';
+import { SignupComponent } from './Pages/signup/signup.component';
+import { LoginComponent } from './Pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { CartDrawerComponent } from './Components/Shared/cart-drawer/cart-drawer
     MainabountComponent,
     MainproductComponent,
     CartComponent,
-    CartDrawerComponent
+    CartDrawerComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

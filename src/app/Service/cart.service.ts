@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 export type CartItem = {
   id: string;
   name: string;
-  price: number;   // ราคาต่อชิ้น
+  price: number;   
   qty: number;
   image?: string;
 };
