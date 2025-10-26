@@ -15,9 +15,8 @@ interface CartItem {
 export class CartComponent {
   countries: any[] = [];
     cart: CartItem[] = [
-    { name: 'Harmony Soy Candle', qty: 1, price: 239, image: 'assets/prod-1.jpg' },
-    { name: 'Luxe Scented Pillar', qty: 1, price: 399, image: 'assets/prod-2.jpg' },
-    { name: 'Eternal Bloom Candle', qty: 1, price: 499, image: 'assets/prod-3.jpg' },
+    { name: 'Yankee Candle – Sparkling Cinnamon', price: 790, qty: 1, image: 'assets/products/yankee-sparkling-cinnamon.jpg' },
+    { name: 'Diptyque – Feu de Bois', price: 1590, qty: 1, image: 'assets/products/Feu de Bois (Wood Fire).webp' },
   ];
 
   get subtotal() {

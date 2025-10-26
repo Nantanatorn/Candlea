@@ -17,7 +17,8 @@ private _open$ = new BehaviorSubject<boolean>(false);
   open$ = this._open$.asObservable();
 
   private _items$ = new BehaviorSubject<CartItem[]>([
-    { id: '1', name: 'AromaLeaf', price: 659, qty: 1, image: 'assets/prod-1.jpg' },
+    { id: '1', name: 'Yankee Candle – Sparkling Cinnamon', price: 790, qty: 1, image: 'assets/products/yankee-sparkling-cinnamon.jpg' },
+    { id: '2', name: 'Diptyque – Feu de Bois', price: 1590, qty: 1, image: 'assets/products/Feu de Bois (Wood Fire).webp' },
   ]);
   items$ = this._items$.asObservable();
 
