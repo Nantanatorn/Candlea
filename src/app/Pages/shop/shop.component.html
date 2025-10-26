@@ -8,15 +8,36 @@
 <!-- Filter bar -->
 <div class="max-w-6xl mx-auto px-6 py-6">
   <div class="flex flex-wrap gap-3 border p-4 rounded-md bg-white shadow-sm">
-    <select class="border px-3 py-2 rounded bg-black text-white">
-      <option>Sort By</option>
+    <!-- Sort By -->
+    <select class="border px-3 py-2 rounded bg-black text-white"
+            >
+      <option value="">Sort By</option>
+      <option value="low-high">Low > High</option>
+      <option value="high-low">High > Low</option>
     </select>
-    <select class="border px-3 py-2 rounded">
-      <option>Popularity</option>
+
+    <!-- Rating -->
+    <select class="border px-3 py-2 rounded"
+             >
+      <option value="">Rating</option>
+      <option value="1">1+</option>
+      <option value="2">2+</option>
+      <option value="3">3+</option>
+      <option value="4">4+</option>
+      <option value="5">5</option>
     </select>
-    <select class="border px-3 py-2 rounded">
-      <option>Newest</option>
+
+    <!-- Brand -->
+    <select class="border px-3 py-2 rounded"
+            >
+      <option value="">Brand</option>
+      <option>Bath & Body Works</option>
+      <option>Yankee Candle</option>
+      <option>PartyLite</option>
+      <option>Trudon</option>
+      <option>Diptyque</option>
     </select>
+
     <select class="border px-3 py-2 rounded">
       <option>Size</option>
     </select>
@@ -27,45 +48,72 @@
 </div>
 
 <!-- Products Grid -->
-<div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pb-12">
-  <div *ngFor="let product of products" class="bg-white shadow hover:shadow-md rounded-lg overflow-hidden p-4 transition">
-    <!-- รูปสินค้า (placeholder) -->
-    <div class="bg-gray-100 h-64 flex items-center justify-center rounded mb-4">
-      <span class="text-gray-400 text-sm">Image</span>
-    </div>
+<section class="py-12 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <ng-container *ngIf="products$ | async as products; else loading">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 pb-12">
+        <div *ngFor="let p of products"
+            [routerLink]="['/product', p.id]"
+             class="bg-white shadow hover:shadow-md rounded-lg overflow-hidden p-4 transition">
 
-    <!-- Rating -->
-    <div class="flex items-center mb-2">
-      <ng-container *ngFor="let star of [1,2,3,4,5]">
-        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 
-          3.974a1 1 0 00.95.69h4.178c.969 0 
-          1.371 1.24.588 1.81l-3.38 2.455a1 1 0 
-          00-.364 1.118l1.287 3.974c.3.922-.755 
-          1.688-1.54 1.118l-3.38-2.454a1 1 0 
-          00-1.175 0l-3.38 2.454c-.785.57-1.84-.196-1.54-1.118l1.287-3.974a1 
-          1 0 00-.364-1.118L2.045 9.401c-.783-.57-.38-1.81.588-1.81h4.178a1 
-          1 0 00.95-.69l1.286-3.974z"/>
-        </svg>
-      </ng-container>
-    </div>
+          <!-- รูปสินค้า -->
+          <div class="bg-gray-100 h-64 rounded mb-4 overflow-hidden flex items-center justify-center">
+            <img [src]="p.image"
+                 [alt]="p.name"
+                 class="w-full h-full object-cover"
+                 >
+          </div>
 
-    <!-- Product Name -->
-    <h3 class="font-semibold">{{ product.name }}</h3>
-    <!-- Price -->
-    <p class="text-gray-700">฿ {{ product.price }}</p>
+          <!-- Rating -->
+          <div class="flex items-center mb-2">
+            <ng-container *ngFor="let s of stars">
+              <svg class="w-4 h-4"
+                   [ngClass]="(s <= Math.round(p.rating || 0)) ? 'text-yellow-400' : 'text-gray-300'"
+                   viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.974a1 1 0 00.95.69h4.178c.969 0 
+                         1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.974c.3.922-.755 
+                         1.688-1.54 1.118l-3.38-2.454a1 1 0 00-1.175 0l-3.38 2.454c-.785.57-1.84-.196-1.54-1.118
+                         l1.287-3.974a1 1 0 00-.364-1.118L2.045 9.401c-.783-.57-.38-1.81.588-1.81h4.178a1 1 0 
+                         00.95-.69l1.286-3.974z"/>
+              </svg>
+            </ng-container>
+          </div>
+
+          <!-- ชื่อ + ราคา -->
+          <h3 class="font-semibold">{{ p.name }}</h3>
+          <p class="text-gray-700">฿ {{ p.price }}</p>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #loading>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div *ngFor="let i of [1,2,3,4,5,6,7,8]" class="p-4 border rounded-lg animate-pulse">
+          <div class="h-64 bg-gray-200 rounded mb-3"></div>
+          <div class="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+          <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+        </div>
+      </div>
+    </ng-template>
   </div>
-</div>
 <!-- Pagination -->
 <div class="flex justify-center items-center space-x-2 my-6">
-  <button class="px-3 py-1 border bg-black text-white rounded">1</button>
-  <button class="px-3 py-1 border rounded">2</button>
-  <button class="px-3 py-1 border rounded">3</button>
-  <span>...</span>
-  <button class="px-3 py-1 border rounded">8</button>
-  <button class="px-3 py-1 border rounded">9</button>
-  <button class="ml-4 px-4 py-1 border bg-black text-white rounded">Next</button>
-</div>|
+  <button (click)="prevPage()" 
+          [disabled]="page === 1"
+          class="px-4 py-1 border rounded bg-gray-200 disabled:opacity-50">
+    Prev
+  </button>
+
+  <span class="px-3 py-1 font-semibold text-gray-700">
+    Page {{ page }}
+  </span>
+
+  <button (click)="nextPage()" 
+          class="px-4 py-1 border bg-black text-white rounded hover:bg-gray-900 transition">
+    Next
+  </button>
+</div>
+</section>
 <div class="relative bg-gray-700 text-center py-16 px-4">
   <!-- พื้นหลัง Image -->
   <div class="absolute inset-0 bg-[#3C4245] opacity-60"></div>

@@ -7,6 +7,7 @@ import { ServiceComponent } from './Pages/service/service.component';
 import { CartComponent } from './Pages/cart/cart.component';
 import { SignupComponent } from './Pages/signup/signup.component';
 import { LoginComponent } from './Pages/login/login.component';
+import { ProductDetailsComponent } from './Pages/product-details/product-details.component';
 
 const routes: Routes = [
   {path: '',component: HomeComponent, pathMatch: 'full' },
@@ -16,11 +17,15 @@ const routes: Routes = [
   {path: 'checkout', component: CartComponent},
   {path: 'sign-up', component: SignupComponent},
   {path: 'login', component: LoginComponent},
+  { path: 'product/:id', component: ProductDetailsComponent },
   { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'enabled', 
+    anchorScrolling: 'enabled',            
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { 

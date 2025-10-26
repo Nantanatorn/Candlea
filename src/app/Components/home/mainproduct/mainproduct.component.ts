@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { ProductService } from '../../../Service/product.service';
+import { Product } from '../../../Model/Product';
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-}
+
+
 
 @Component({
   selector: 'app-mainproduct',
@@ -13,14 +12,20 @@ interface Product {
   templateUrl: './mainproduct.component.html',
   styleUrl: './mainproduct.component.css'
 })
-export class MainproductComponent {
+export class MainproductComponent implements OnInit{
 
-    products: Product[] = [
-    { id: 1, name: 'Golden Aura Candle',    price: 499, image: 'assets/prod-1.jpg' },
-    { id: 2, name: 'Aroma Glow Candle',     price: 599, image: 'assets/prod-2.jpg' },
-    { id: 3, name: 'Blissful Essence Candle', price: 499, image: 'assets/prod-3.jpg' },
-    { id: 4, name: 'Harmony Soy Candle',    price: 599, image: 'assets/prod-4.jpg' },
-    { id: 5, name: 'Midnight Bloom Candle', price: 599, image: 'assets/prod-5.jpg' },
-  ];
+  products$!: Observable<Product[]>;
 
+  constructor(private productService: ProductService) {}
+
+  ngOnInit(): void {
+    // ดึงข้อมูลจาก service แล้วกรองเอาเฉพาะ 4 อันดับแรกตาม rating
+    this.products$ = this.productService.getAll().pipe(
+      map(products =>
+        [...products] // clone array ป้องกัน mutation
+          .sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0)) // เรียงจากมาก → น้อย
+          .slice(0, 4) // เอาแค่ 4 ชิ้นแรก
+      )
+    );
+  }
 }

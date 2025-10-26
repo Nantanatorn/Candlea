@@ -36,11 +36,12 @@ import { LoginComponent } from './Pages/login/login.component';
     CartComponent,
     CartDrawerComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+
   ],
   providers: [
     provideClientHydration(withEventReplay())

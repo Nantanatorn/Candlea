@@ -12,13 +12,15 @@ export class MaincatComponent {
     @ViewChild('scrollEl', { static: true }) scrollEl!: ElementRef<HTMLDivElement>;
 
   items: Item[] = [
-    { id:1, name:'Glowly',        price:100, image:'assets/cat-1.jpg' },
-    { id:2, name:'Mellow Melt',   price:100, image:'assets/cat-2.jpg' },
-    { id:3, name:'Fluffy Flame',  price:100, image:'assets/cat-3.jpg' },
-    { id:4, name:'Lumina',        price:100, image:'assets/cat-4.jpg' },
-    { id:5, name:'Sparkly Wick',  price:100, image:'assets/cat-5.jpg' },
-    { id:6, name:'Calm Cedar',    price:100, image:'assets/cat-6.jpg' },
+    { id:1, name:'Bath & Body Works',  price:100, image:'assets/brand/cat1.png' },
+    { id:2, name:'Yankee Candle',      price:100, image:'assets/brand/cat2.avif' },
+    { id:3, name:'PartyLite',          price:100, image:'assets/brand/cat3.jpg' },
+    { id:4, name:'Trudon',             price:100, image:'assets/brand/cat4.webp' },
+    { id:5, name:'Diptyque',           price:100, image:'assets/brand/cat5.webp' },
   ];
+
+  
+
 
   scrollByCard(dir: 1 | -1) {
     const el = this.scrollEl.nativeElement;

@@ -14,6 +14,7 @@ type Quality = {
 
 
 export class AboutusComponent {
+    imageUrl: string | null = 'assets/oriCandle.png'
     qualities: Quality[] = [
     {
       no: '01',

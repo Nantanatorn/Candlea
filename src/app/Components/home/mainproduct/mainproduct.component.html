@@ -17,7 +17,7 @@
 
     <!-- Grid สินค้า -->
     <div class="mt-12 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      <div *ngFor="let p of products"
+      <div *ngFor="let p of (products$ | async)"
            class="rounded-xl border border-gray-200 p-4 bg-white hover:shadow-lg transition">
         <div class="aspect-[3/4] w-full overflow-hidden rounded-lg bg-gray-100">
           <img [src]="p.image" alt="{{p.name}}"
