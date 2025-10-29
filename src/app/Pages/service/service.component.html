@@ -17,17 +17,18 @@
 
 <!-- Service Cards -->
 <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 pb-16">
-  <div *ngFor="let service of services" 
-       class="bg-white rounded-lg overflow-hidden shadow hover:shadow-md transition flex flex-col">
-    <!-- รูป Placeholder -->
-    <div class="bg-gray-100 h-64 flex items-center justify-center">
-      <span class="text-gray-400 text-sm">Image</span>
+  <div
+    *ngFor="let service of (services$ | async); trackBy: trackByTitle"
+    class="bg-white rounded-lg overflow-hidden shadow hover:shadow-md transition flex flex-col"
+  >
+    <div class="bg-gray-100 aspect-square rounded-lg overflow-hidden">
+      <img [src]="service.image" [alt]="service.title" class="w-full h-full object-cover" />
     </div>
-    <!-- เนื้อหา -->
+
     <div class="p-4 flex flex-col flex-1">
       <h3 class="font-eng font-semibold text-lg mb-2">{{ service.title }}</h3>
       <p class="font-thai text-sm text-gray-500 mb-4 flex-1">{{ service.description }}</p>
-      <a href="#" class="text-sm font-semibold text-black hover:underline">Read more</a>
+      <a routerLink="/services" class="text-sm font-semibold text-black hover:underline">Read more</a>
     </div>
   </div>
 </div>
