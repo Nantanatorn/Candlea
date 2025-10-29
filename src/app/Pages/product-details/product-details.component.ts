@@ -3,6 +3,8 @@ import { Product } from '../../Model/Product';
 import { combineLatest, map, Observable, switchMap } from 'rxjs';
 import { ProductService } from '../../Service/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem } from '../../Model/CartItem';
+import { CartService } from '../../Service/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -11,13 +13,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-  product$!: Observable<Product | undefined>;
+   product$!: Observable<Product | undefined>;
+  related$!: Observable<Product[]>;
+  qty = 1;
   activeTab: 'overview' | 'info' = 'overview';
-  related$!: Observable<Product[]>;           
   stars = [1,2,3,4,5];
   Math = Math;
-  
-  constructor(private route: ActivatedRoute, private productService: ProductService) {}
+
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private cart: CartService
+  ) {}
 
   ngOnInit(): void {
     this.product$ = this.route.paramMap.pipe(
@@ -30,15 +37,25 @@ export class ProductDetailsComponent implements OnInit {
     ]).pipe(
       map(([current, all]) => {
         if (!current) return [];
-        // ตัดสินค้าปัจจุบันออก
         const others = all.filter(p => p.id !== current.id);
-        // สุ่มรายการโดยใช้ .sort(() => Math.random() - 0.5)
-        const shuffled = others.sort(() => Math.random() - 0.5);
-        // คืนค่ามา 5 ชิ้น
-        return shuffled.slice(0, 4);
+        return others.sort(() => Math.random() - 0.5).slice(0, 4);
       })
     );
+  }
 
-    window.scrollTo({ top: 0 });
+  addToCart(p?: Product) {
+    if (!p) return;
+    const finalQty = Number(this.qty) || 1;
+
+    const item: CartItem = {
+      id: p.id,
+      name: p.name,
+      price: p.price,
+      qty: finalQty,
+      image: p.image,
+      sku: p.sku
+    };
+
+    this.cart.add(item);
   }
 }

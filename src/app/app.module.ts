@@ -18,7 +18,7 @@ import { CartComponent } from './Pages/cart/cart.component';
 import { CartDrawerComponent } from './Components/Shared/cart-drawer/cart-drawer.component';
 import { SignupComponent } from './Pages/signup/signup.component';
 import { LoginComponent } from './Pages/login/login.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +41,7 @@ import { LoginComponent } from './Pages/login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
 
   ],
   providers: [

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-interface CartItem {
-  name: string;
-  qty: number;
-  price: number;
-  image: string;
-}
+import { CartService } from '../../Service/cart.service';
+import { Observable } from 'rxjs';
+import { CartItem } from '../../Model/CartItem';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-cart',
@@ -13,16 +12,31 @@ interface CartItem {
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
-  countries: any[] = [];
-    cart: CartItem[] = [
-    { name: 'Yankee Candle – Sparkling Cinnamon', price: 790, qty: 1, image: 'assets/products/yankee-sparkling-cinnamon.jpg' },
-    { name: 'Diptyque – Feu de Bois', price: 1590, qty: 1, image: 'assets/products/Feu de Bois (Wood Fire).webp' },
-  ];
+    items$!: Observable<CartItem[]>;
+  subtotal$!: Observable<number>;
 
-  get subtotal() {
-    return this.cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+  constructor(public cart: CartService, private router: Router) {}
+
+  ngOnInit(): void {
+    // กัน overlay ค้างถ้ามาจาก drawer
+    this.cart.close?.();
+
+    this.items$ = this.cart.items$;
+    this.subtotal$ = this.cart.subtotal$;
   }
 
-   
+  // actions
+  inc(id: string)    { this.cart.inc(id); }
+  dec(id: string)    { this.cart.dec(id); }
+  remove(id: string) { this.cart.remove(id); }
+  clear()            { this.cart.clear(); }
 
+  // ปุ่ม checkout
+  onCheckout(): void {
+    this.cart.close?.();
+     
+  }
+
+  // ช่วย performance กับ *ngFor
+  trackById = (_: number, i: CartItem) => i.id;
 }

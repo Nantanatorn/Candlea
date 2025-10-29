@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartService } from '../../../Service/cart.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,10 @@ import { CartService } from '../../../Service/cart.service';
 })
 export class NavbarComponent {
     mobileOpen = false;
+    totalQty$: Observable<number>;
     closeMobile() { this.mobileOpen = false; }
-    constructor(public cart: CartService) {}
+    constructor(public cart: CartService) {
+    this.totalQty$ = this.cart.totalQty$; 
+  }
 
 }
